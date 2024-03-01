@@ -170,7 +170,12 @@ current_stock_excel = '_ESTOQUE_ATUAL_LOJA.xlsx'
 current_stock_sheet = 'ESTOQUE ATUAL'
 consolidated_stock_excel = 'ESTOQUE GERAL.xlsx'
 consolidated_stock_sheet = 'ESTOQUE GERAL'
-user_input = int(input("Qual empresa? Digite 1 para LOJA ou 2 para HD: "))
+
+user_input = int(input("Which company? Type 1 for STORE or 2 for HD: "))
+
+if user_input != 1 and user_input != 2:
+    print("Select a valid company.")
+    exit()
 
 print("\nStarting process...")
 clear_excel_data(current_stock_excel)
