@@ -16,20 +16,20 @@ Before you begin, make sure you have Python installed on your computer. If you d
 
 ## Preparing the Files
 
-For the `script.py` to run correctly, you need to place specific files within the same folder as `script.py`. Here's a list of the files you'll need:
+To ensure the script.py runs correctly, it is crucial to have the required files located in specific paths on your system. Here are the files you need, along with their respective paths:
 
-- `_ESTOQUE_ATUAL_LOJA.xlsx`
-- `22.02.2024.csv`
-- `ESTOQUE GERAL.xlsx`
+- The daily stock CSV file should be located at `C:\Users\erixy\OneDrive\Work\_Estoques\LOJA\22.02.2024.csv`.
+- The current stock Excel file should be located at `C:\Users\erixy\OneDrive\Work\_Estoques\LOJA\_ESTOQUE_ATUAL_LOJA.xlsx`.
+- The consolidated stock Excel file should be located at `C:\Users\erixy\OneDrive\Work\_Estoques\ESTOQUE GERAL.xlsx`.
 
-If you haven't already, please ensure these files are downloaded and ready to be moved into the project folder.
+Please ensure these files are located in the specified paths. If they are not, you will need to move them to the correct locations before running the script.
 
 ## Running the Script
 
 Once you have all the required files in the right place, you're ready to run the script. Follow these steps:
 
 1. Open your terminal or command prompt.
-2. Navigate to the folder where you extracted the project and where `script.py` is located. You can do this by using the `cd` command followed by the path to the folder. For example:
+2. Navigate to the folder where `script.py` is located. This will not be the same as where your data files are stored, unless you've specifically placed `script.py` in one of those directories.
 ```
 cd path/to/folder
 ```
@@ -38,7 +38,7 @@ cd path/to/folder
 python script.py
 ```
 
-If everything is set up correctly, the script will execute and perform its intended tasks. Should you encounter any issues, please make sure all files are correctly placed in the folder and that you have Python properly installed on your computer.
+If everything is set up correctly, the script will execute and perform its intended tasks by accessing the files from their specified locations. Should you encounter any issues, please ensure all files are placed correctly according to the paths given above, and verify that Python is properly installed on your computer.
 
 ## Need Help?
 

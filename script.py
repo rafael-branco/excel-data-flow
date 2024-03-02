@@ -6,11 +6,25 @@ from datetime import datetime
 import sys
 
 
+def convert_text_to_numbers_in_excel(excel_path, sheet_name):
+    
+    print("Converting some texts to numbers on", sheet_name)
+    df = pd.read_excel(excel_path, sheet_name=sheet_name)
+    
+    for index, value in df.iloc[:, 6].items(): 
+        if value in ['46', '48', '50', '52']:
+            df.iloc[index, 6] = int(value) 
+    
+    with pd.ExcelWriter(excel_path, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+
+
 def find_last_non_blank_row(sheet):
     for row in range(sheet.max_row, 0, -1):
         if any(cell.value is not None for cell in sheet[row]):
             return row
     return 0
+
 
 def get_data_from_specific_rows(filename, sheet_name, row_numbers):
     wb = openpyxl.load_workbook(filename, data_only=True)
@@ -23,6 +37,7 @@ def get_data_from_specific_rows(filename, sheet_name, row_numbers):
         rows_data[row_num] = row_data
 
     return rows_data
+
 
 def remove_blank_rows_from_bottom(filename, sheet_name):
     
@@ -164,11 +179,10 @@ def update_general_stock(input_value, source_file='_ESTOQUE_ATUAL_LOJA.xlsx', ta
 
     print(f"Updated '{target_file}' successfully with data from '{source_file}'.")
 
-
-daily_stock_csv = '22.02.2024.csv'
-current_stock_excel = '_ESTOQUE_ATUAL_LOJA.xlsx'
+daily_stock_csv = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\22.02.2024.csv'
+current_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\_ESTOQUE_ATUAL_LOJA.xlsx'
 current_stock_sheet = 'ESTOQUE ATUAL'
-consolidated_stock_excel = 'ESTOQUE GERAL.xlsx'
+consolidated_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\ESTOQUE GERAL.xlsx'
 consolidated_stock_sheet = 'ESTOQUE GERAL'
 
 user_input = int(input("Which company? Type 1 for STORE or 2 for HD: "))
@@ -183,3 +197,6 @@ update_stock(daily_stock_csv, current_stock_excel, user_input)
 update_general_stock(user_input, current_stock_excel, consolidated_stock_excel)
 remove_blank_rows_from_sheet(consolidated_stock_excel, consolidated_stock_sheet)
 remove_blank_rows_from_bottom(consolidated_stock_excel, consolidated_stock_sheet)
+convert_text_to_numbers_in_excel(current_stock_excel, current_stock_sheet)
+convert_text_to_numbers_in_excel(consolidated_stock_excel, consolidated_stock_sheet)
+print("Completed successfully!")
