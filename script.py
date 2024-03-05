@@ -120,7 +120,7 @@ def update_stock(file_path_csv, file_path_excel, user_input):
         size = row[6].value
         if size in ["P", "M", "G"]:
             row[4].value = "Comum"
-        elif size in [46, 48, 50, 52]:
+        elif size in ["46", "48", "50", "52"]:
             row[4].value = "Plus"
         row[3].value = user_input
         
@@ -178,6 +178,7 @@ def update_general_stock(input_value, source_file='_ESTOQUE_ATUAL_LOJA.xlsx', ta
     target_workbook.save(target_file)
 
     print(f"Updated '{target_file}' successfully with data from '{source_file}'.")
+
 
 daily_stock_csv = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\22.02.2024.csv'
 current_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\_ESTOQUE_ATUAL_LOJA.xlsx'
