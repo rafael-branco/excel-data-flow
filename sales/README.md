@@ -18,9 +18,9 @@ Before you begin, make sure you have Python installed on your computer. If you d
 
 To ensure the script.py runs correctly, it is crucial to have the required files located in specific paths on your system. Here are the files you need, along with their respective paths:
 
-- `C:\Users\erixy\OneDrive\Work\_Estoques\atual.csv`
-- `C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\anterior.csv`
-- `C:\Users\erixy\OneDrive\Work\_Relatórios\VENDAS.xlsx`
+- The daily stock CSV file should be located at `C:\Users\erixy\OneDrive\Work\_Estoques\LOJA\22.02.2024.csv`.
+- The current stock Excel file should be located at `C:\Users\erixy\OneDrive\Work\_Estoques\LOJA\_ESTOQUE_ATUAL_LOJA.xlsx`.
+- The consolidated stock Excel file should be located at `C:\Users\erixy\OneDrive\Work\_Estoques\ESTOQUE GERAL.xlsx`.
 
 Please ensure these files are located in the specified paths. If they are not, you will need to move them to the correct locations before running the script.
 
