@@ -111,9 +111,9 @@ def find_rows_only_in_first_csv(file_path1, file_path2):
     return only_in_csv1
 
 
-previous = "C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\sales\\anterior.csv" #'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\anterior.csv'
-current =  "C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\sales\\atual.csv"     #'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\atual.csv'
-sales = "C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\sales\\VENDAS.xlsx"    #'C:\\Users\\erixy\\OneDrive\\Work\\_Relatórios\\VENDAS.xlsx'
+previous = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\anterior.csv'
+current =  'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\atual.csv'
+sales = 'C:\\Users\\erixy\\OneDrive\\Work\\_Relatórios\\VENDAS.xlsx'
 
 rows_only_in_first_file = find_rows_only_in_first_csv(previous, current)
 
