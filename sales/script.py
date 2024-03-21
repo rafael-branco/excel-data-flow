@@ -6,10 +6,10 @@ from openpyxl.worksheet.table import Table, TableStyleInfo
 from openpyxl.utils import get_column_letter, range_boundaries, column_index_from_string
 from openpyxl.utils.cell import range_boundaries
 from openpyxl.utils.cell import get_column_letter
-from openpyxl import load_workbook
 from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 import re
+
 
 def process_columns_set_font(file_path):
     workbook = load_workbook(filename=file_path)
