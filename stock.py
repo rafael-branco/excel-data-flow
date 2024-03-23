@@ -6,18 +6,27 @@ from datetime import datetime
 import sys
 import openpyxl
 from openpyxl.worksheet.table import Table, TableStyleInfo
+import win32com.client as win32
 
 def refresh_pivot_table(workbook_path, sheet_name):
+    print(f"Refreshing {sheet_name} pivot table")
 
-    wb = openpyxl.load_workbook(workbook_path)
-    ws = wb[sheet_name]
+    xlapp = win32.DispatchEx('Excel.Application')
+    xlapp.DisplayAlerts = False
+    xlapp.Visible = False
 
-    for table in ws.tables.values():
-        table.tableStyleInfo = TableStyleInfo(name="TableStyleMedium9", showFirstColumn=False,
-                                              showLastColumn=False, showRowStripes=True, showColumnStripes=True)
-        table.refreshOnLoad = True
+    xlbook = xlapp.Workbooks.Open(workbook_path)
 
-    wb.save(workbook_path)
+    # Refresh all pivot tables
+    xlbook.RefreshAll()
+
+    xlbook.Save()
+    xlbook.Close()
+    xlapp.Quit()
+
+    # Make sure Excel completely closes
+    del xlbook
+    del xlapp
 
 
 def convert_text_to_numbers_in_excel(excel_path, sheet_name):
@@ -194,11 +203,17 @@ def update_general_stock(input_value, source_file='_ESTOQUE_ATUAL_LOJA.xlsx', ta
     print(f"Updated '{target_file}' successfully with data from '{source_file}'.")
 
 
-daily_stock_csv = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\22.02.2024.csv'
-current_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\_ESTOQUE_ATUAL_LOJA.xlsx'
+daily_stock_csv = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\22.02.2024.csv'
+current_stock_excel = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\_ESTOQUE_ATUAL_LOJA.xlsx'
 current_stock_sheet = 'ESTOQUE ATUAL'
-consolidated_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\ESTOQUE GERAL.xlsx'
+consolidated_stock_excel = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\ESTOQUE GERAL.xlsx'
 consolidated_stock_sheet = 'ESTOQUE GERAL'
+
+# daily_stock_csv = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\22.02.2024.csv'
+# current_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\_ESTOQUE_ATUAL_LOJA.xlsx'
+# current_stock_sheet = 'ESTOQUE ATUAL'
+# consolidated_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\ESTOQUE GERAL.xlsx'
+# consolidated_stock_sheet = 'ESTOQUE GERAL'
 
 
 user_input = int(input("Which company? Type 1 for STORE or 2 for HD: "))
