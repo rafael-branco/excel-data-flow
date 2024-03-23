@@ -194,10 +194,10 @@ def update_general_stock(input_value, source_file='_ESTOQUE_ATUAL_LOJA.xlsx', ta
     print(f"Updated '{target_file}' successfully with data from '{source_file}'.")
 
 
-daily_stock_csv = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\stock\\22.02.2024.csv'
-current_stock_excel = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\stock\\_ESTOQUE_ATUAL_LOJA.xlsx'
+daily_stock_csv = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\22.02.2024.csv'
+current_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\_ESTOQUE_ATUAL_LOJA.xlsx'
 current_stock_sheet = 'ESTOQUE ATUAL'
-consolidated_stock_excel = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\stock\\ESTOQUE GERAL.xlsx'
+consolidated_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\ESTOQUE GERAL.xlsx'
 consolidated_stock_sheet = 'ESTOQUE GERAL'
 
 
