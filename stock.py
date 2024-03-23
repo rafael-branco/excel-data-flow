@@ -4,6 +4,20 @@ from openpyxl import load_workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from datetime import datetime
 import sys
+import openpyxl
+from openpyxl.worksheet.table import Table, TableStyleInfo
+
+def refresh_pivot_table(workbook_path, sheet_name):
+
+    wb = openpyxl.load_workbook(workbook_path)
+    ws = wb[sheet_name]
+
+    for table in ws.tables.values():
+        table.tableStyleInfo = TableStyleInfo(name="TableStyleMedium9", showFirstColumn=False,
+                                              showLastColumn=False, showRowStripes=True, showColumnStripes=True)
+        table.refreshOnLoad = True
+
+    wb.save(workbook_path)
 
 
 def convert_text_to_numbers_in_excel(excel_path, sheet_name):
@@ -180,11 +194,12 @@ def update_general_stock(input_value, source_file='_ESTOQUE_ATUAL_LOJA.xlsx', ta
     print(f"Updated '{target_file}' successfully with data from '{source_file}'.")
 
 
-daily_stock_csv = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\22.02.2024.csv'
-current_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\LOJA\\_ESTOQUE_ATUAL_LOJA.xlsx'
+daily_stock_csv = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\stock\\22.02.2024.csv'
+current_stock_excel = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\stock\\_ESTOQUE_ATUAL_LOJA.xlsx'
 current_stock_sheet = 'ESTOQUE ATUAL'
-consolidated_stock_excel = 'C:\\Users\\erixy\\OneDrive\\Work\\_Estoques\\ESTOQUE GERAL.xlsx'
+consolidated_stock_excel = 'C:\\Users\\User\\Documents\\gitwork\\excel-data-flow\\stock\\ESTOQUE GERAL.xlsx'
 consolidated_stock_sheet = 'ESTOQUE GERAL'
+
 
 user_input = int(input("Which company? Type 1 for STORE or 2 for HD: "))
 
@@ -200,4 +215,6 @@ remove_blank_rows_from_sheet(consolidated_stock_excel, consolidated_stock_sheet)
 remove_blank_rows_from_bottom(consolidated_stock_excel, consolidated_stock_sheet)
 convert_text_to_numbers_in_excel(current_stock_excel, current_stock_sheet)
 convert_text_to_numbers_in_excel(consolidated_stock_excel, consolidated_stock_sheet)
+refresh_pivot_table(consolidated_stock_excel, 'Tam. COMUM')
+refresh_pivot_table(consolidated_stock_excel, 'Tam. PLUS')
 print("Completed successfully!")
