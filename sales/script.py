@@ -10,6 +10,17 @@ from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 import re
 
+def to_datetime(value):
+    """Convert value to datetime if it's a string representing a date."""
+    if isinstance(value, str):
+        try:
+            # Attempt to convert string to datetime using the specified format
+            return datetime.strptime(value, "%d/%m/%Y")
+        except ValueError:
+            # If conversion fails, return the original value
+            # This allows for handling non-date strings or different formats
+            return value
+    return value
 
 def process_columns_set_font(file_path):
     workbook = load_workbook(filename=file_path)
@@ -80,10 +91,10 @@ def insert_and_sort_rows(file_path, rows, insert_at_row):
         data = []
         for row in worksheet.iter_rows(min_row=min_row, max_row=table_end_row, values_only=True):
             data.append(row)
-        
+
         last_col_index = worksheet.max_column - 1
-        sorted_data = sorted(data[1:], key=lambda x: x[last_col_index])
-        
+        sorted_data = sorted(data[1:], key=lambda x: to_datetime(x[last_col_index]))
+
         for i, row_data in enumerate(sorted_data, start=min_row+1):
             for j, value in enumerate(row_data, start=1):
                 worksheet.cell(row=i, column=j, value=value)
